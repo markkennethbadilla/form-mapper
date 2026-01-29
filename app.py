@@ -219,9 +219,6 @@ if uploaded_file is not None:
             warped_rgb = warped_rgb.astype(np.uint8)
             st.session_state.warped_image = warped_rgb
 
-            # Show the warped image for debugging
-            st.image(warped_rgb, caption="Perspective-corrected form", use_column_width=True)
-
             st.info("✏️ Draw rectangles to define fields. Click 'Add Field' after each rectangle.")
 
             # Drawable canvas
@@ -230,6 +227,7 @@ if uploaded_file is not None:
             with col1:
                 # Convert to PIL Image with explicit mode
                 pil_image = Image.fromarray(warped_rgb, mode='RGB')
+                canvas_width, canvas_height = pil_image.size
 
                 canvas_result = st_canvas(
                     fill_color="rgba(255, 165, 0, 0.3)",
@@ -237,8 +235,8 @@ if uploaded_file is not None:
                     stroke_color="#FF0000",
                     background_image=pil_image,
                     update_streamlit=True,
-                    height=output_height,
-                    width=output_width,
+                    height=canvas_height,
+                    width=canvas_width,
                     drawing_mode="rect",
                     key="canvas",
                 )
@@ -256,10 +254,10 @@ if uploaded_file is not None:
 
                             if st.button("➕ Add Field") and field_name:
                                 # Convert to percentages
-                                x_percent = (last_rect["left"] / output_width) * 100
-                                y_percent = (last_rect["top"] / output_height) * 100
-                                w_percent = (last_rect["width"] / output_width) * 100
-                                h_percent = (last_rect["height"] / output_height) * 100
+                                x_percent = (last_rect["left"] / canvas_width) * 100
+                                y_percent = (last_rect["top"] / canvas_height) * 100
+                                w_percent = (last_rect["width"] / canvas_width) * 100
+                                h_percent = (last_rect["height"] / canvas_height) * 100
 
                                 st.session_state.fields[field_name] = {
                                     "x": round(x_percent, 2),
