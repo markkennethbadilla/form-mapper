@@ -1,0 +1,7 @@
+streamlit==1.31.0
+opencv-python==4.9.0.80
+opencv-contrib-python==4.9.0.80
+reportlab==4.0.9
+streamlit-drawable-canvas==0.9.3
+numpy==1.26.3
+Pillow==10.2.0
