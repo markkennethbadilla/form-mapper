@@ -214,7 +214,7 @@ if uploaded_file is not None:
             # Warp image
             warped = cv2.warpPerspective(img, H, (output_width, output_height))
             warped_rgb = cv2.cvtColor(warped, cv2.COLOR_BGR2RGB)
-            
+
             # Ensure uint8 format for proper display
             warped_rgb = warped_rgb.astype(np.uint8)
             st.session_state.warped_image = warped_rgb
@@ -227,7 +227,7 @@ if uploaded_file is not None:
             with col1:
                 # Convert to PIL Image
                 pil_image = Image.fromarray(warped_rgb)
-                
+
                 canvas_result = st_canvas(
                     fill_color="rgba(255, 165, 0, 0.3)",
                     stroke_width=2,
