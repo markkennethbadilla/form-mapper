@@ -219,14 +219,17 @@ if uploaded_file is not None:
             warped_rgb = warped_rgb.astype(np.uint8)
             st.session_state.warped_image = warped_rgb
 
+            # Show the warped image for debugging
+            st.image(warped_rgb, caption="Perspective-corrected form", use_container_width=True)
+
             st.info("✏️ Draw rectangles to define fields. Click 'Add Field' after each rectangle.")
 
             # Drawable canvas
             col1, col2 = st.columns([3, 1])
 
             with col1:
-                # Convert to PIL Image
-                pil_image = Image.fromarray(warped_rgb)
+                # Convert to PIL Image with explicit mode
+                pil_image = Image.fromarray(warped_rgb, mode='RGB')
 
                 canvas_result = st_canvas(
                     fill_color="rgba(255, 165, 0, 0.3)",
