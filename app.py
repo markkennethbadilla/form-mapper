@@ -220,7 +220,7 @@ if uploaded_file is not None:
             st.session_state.warped_image = warped_rgb
 
             # Show the warped image for debugging
-            st.image(warped_rgb, caption="Perspective-corrected form", use_container_width=True)
+            st.image(warped_rgb, caption="Perspective-corrected form", use_column_width=True)
 
             st.info("✏️ Draw rectangles to define fields. Click 'Add Field' after each rectangle.")
 
