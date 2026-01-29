@@ -152,12 +152,12 @@ if st.sidebar.button("📋 Generate Calibration Sheet", use_container_width=True
         use_container_width=True
     )
     st.sidebar.success("✅ PDF generated!")
-    st.sidebar.info("📝 Instructions:\n1. Print this PDF onto your pre-printed form\n2. Scan the printed form\n3. Upload the scan below")
+    st.sidebar.info("📝 Instructions:\n1. Print this PDF onto your pre-printed form\n2. Take a picture of the printed form\n3. Upload the photo below")
 
 # ==================== PHASE 2: MAIN AREA ====================
 st.header("Phase 2: Map Your Form")
 
-uploaded_file = st.file_uploader("Upload scanned image", type=['png', 'jpg', 'jpeg'])
+uploaded_file = st.file_uploader("📸 Upload photo or scan of your form", type=['png', 'jpg', 'jpeg'])
 
 if uploaded_file is not None:
     # Read image
